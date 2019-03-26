@@ -1,0 +1,44 @@
+﻿#region Beschreibung und Kommentare
+# Setze Berechtigung Delegierung für die Hyper-V Server
+# written by Karl-Heinz Lambers and Jan Kappen
+# www.hyper-v-server.de - j.kappen@rachfahl.de
+# Version 0.2 - 16.05.2017
+#endregion 
+
+#region Name von SOFS und Domain
+$SOFS = "<Name_des_SOFS>"
+$Domain = "contoso.local"
+#endregion
+
+#region Import der benötigten Module
+Import-Module ActiveDirectory
+#endregion
+
+#region Hyper-V Bereich
+$Servers =  "<Host1>", "<Host2>", "<Host3>", "<Host4>"
+$Servers | foreach-object {
+    $Server1 = $_
+    Write-Host $Server1 -foregroundcolor green
+
+    $Servers | foreach-object {
+        $Server2 = $_
+
+        if ($Server1 -ne $Server2) {
+            Write-Host "`t$Server2" -foregroundcolor yellow
+            Get-ADComputer $Server1 | Set-ADObject -Add @{"msDS-AllowedToDelegateTo" = "Microsoft Virtual System Migration Service/$Server2.$Domain", "cifs/$Server2.$Domain", "Microsoft Virtual System Migration Service/$Server2", "cifs/$Server2"}
+            Get-ADComputer $Server1 | Set-ADAccountControl -TrustedForDelegation:$false -TrustedToAuthForDelegation:$true
+        }
+    }
+}
+#endregion
+
+#region SOFS Bereich
+$Servers =  "<Host1>", "<Host2>", "<Host3>", "<Host4>"
+$Servers | foreach-object {
+    $Server = $_
+
+    Write-Host "`t$SOFS" -foregroundcolor yellow
+    Get-ADComputer $SOFS | Set-ADObject -Add @{"msDS-AllowedToDelegateTo" = "cifs/$Server.$Domain", "cifs/$Server"}
+    Get-ADComputer $SOFS | Set-ADAccountControl -TrustedForDelegation:$false -TrustedToAuthForDelegation:$true
+}
+#endregion
