@@ -1,20 +1,19 @@
-##############################################################################################
-# Script zum Export von VMs unter Hyper-V mit Windows Server 2016 oder Windows 10 Pro        #
-# erstellt von Jan Kappen - j.kappen@rachfahl.de					     #
-# Version 0.4.1										     #
-# 06. Mai 2017										     #
-# Diese Script wird bereitgestellt wie es ist, ohne jegliche Garantie. Der Einsatz	     #
-# erfolgt auf eigene Gefahr. Es wird jegliche Haftung ausgeschlossen.			     #
-# Wer dem Autor etwas Gutes tun möchte, er trinkt gern ein kaltes Corona :)                  #
-# 											     #
-# Dies ist die Hilfe :)									     #
-# 											     #
-# www.hyper-v-server.de | www.rachfahl.de						     #
-##############################################################################################
 
-################################
-# Erklärung der Funktionsweise #
-################################
+# Script zum Export von VMs unter Hyper-V mit Windows Server 2016 oder Windows 10 Pro        
+erstellt von Jan Kappen - j.kappen@rachfahl.de					     
+Version 0.4.1										     
+06. Mai 2017										     
+Diese Script wird bereitgestellt wie es ist, ohne jegliche Garantie. Der Einsatz	     
+erfolgt auf eigene Gefahr. Es wird jegliche Haftung ausgeschlossen.			     
+Wer dem Autor etwas Gutes tun möchte, er trinkt gern ein kaltes Corona :)                  
+											     
+Dies ist die Hilfe :)									     
+											     
+www.hyper-v-server.de | www.rachfahl.de						     
+
+
+
+# Erklärung der Funktionsweise
 
 Dieses Script exportiert manuell oder per Taskplaner jeweils eine VM. Standardmäßig wird die VM online exportiert. 
 Die VM wird alternativ je nach Wunsch gespeichert oder heruntergefahren, die Möglichkeit eines sauberen Shutdown wird getestet, 
@@ -36,26 +35,25 @@ Auf Wunsch können Sie sich das Logfile nach der Sicherung per Email schicken la
 
 Die Funktionsweise des Skripts wurde mit einem englischen Windows Server 2016 mit dem Dezember 2016 Patchlevel getestet.
 
-##################################
-# Mögliche Parameter des Scripts #
-##################################
-# Pflicht-Parameter #
-#####################
+
+# Mögliche Parameter des Scripts
+# Pflicht-Parameter
+
 -VM <Name der VM>
 -Exportpfad "D:\Pfad zum gewünschten\Exportordner"
 
-#######################
-# Optionale Parameter #
-#######################
+
+# Optionale Parameter
+
 -Speichern
 -Herunterfahren
 -ProductionCheckpoint
 -Logpfad "D:\Pfad zum gewünschten\Logfileordner"
 -statusmail
 
-############################
-# Erklaerung der Parameter #
-############################
+
+# Erklaerung der Parameter
+
 -VM: 			Dieser Parameter gibt den Namen des Systems an, welches exportiert werden soll. Dieser Parameter ist notwendig.
 
 -Exportpfad: 		Gibt den Pfad an, in den der Export erstellt wird. Dieser Parameter ist notwendig.
@@ -78,9 +76,9 @@ Die Funktionsweise des Skripts wurde mit einem englischen Windows Server 2016 mi
 			Auf Wunsch kann eine andere Absender-Adresse eingetragen werden. Weitere Informationen finden Sie im Konfigurations-
 			Menü dieser Option weiter unten in dieser Hilfe-Datei.
 
-#############
-# Beispiele #
-#############
+
+# Beispiele
+
 Einfacher Export einer VM ohne weitere Optionen:
 Export.ps1 -VM <VMName> -Exportpfad D:\Exports
 
@@ -96,9 +94,9 @@ Export.ps1 -VM <VMName> -Exportpfad D:\Exports -Herunterfahren
 Export einer VM und Umlenkung des Logs an einen anderen Speicherort:
 Export.ps1 -VM <VMName> -Exportpfad D:\Exports -Logpfad "E:\Logfiles\Hyper-V Export\"
 
-####################################
-# Konfiguration des Email-Versands #
-####################################
+
+# Konfiguration des Email-Versands
+
 
 Bearbeiten Sie das PowerShell-Script, ich empfehle hierzu das Programm "PowerShell ISE" oder Notepad++. Sie müssen die Zeilen 29 bis 39 anpassen.
 1) Kommentieren Sie Zeile 29 aus, um die Ausgabe der Warnung zu entfernen
@@ -109,9 +107,9 @@ Bearbeiten Sie das PowerShell-Script, ich empfehle hierzu das Programm "PowerShe
 Bei dem Bedarf an weiteren Anpassungen schauen Sie sich die Eigenschaften dieses Befehls an, um z.B. die Verbindung per SSL zu erlauben
 http://technet.microsoft.com/en-us/library/hh849925.aspx
 
-#############
-# ChangeLog #
-#############
+
+# ChangeLog
+
 Version 0.4.1:
 Logging angepasst, Wechsel auf PowerShell-eigene Transcript-Möglichkeit
 
