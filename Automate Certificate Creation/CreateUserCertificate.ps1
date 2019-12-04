@@ -43,10 +43,10 @@ Function Clean-CertificateRequest {
 }
 
 # Werte einlesen
-$x = Get-Content -path C:\tools\user.json | ConvertFrom-Json
+$Sourcefile = Get-Content -path C:\tools\user.json | ConvertFrom-Json
 $CATemplate = "Meine-CA-Benutzer-Zertfikat-exportierbar"
 $CAName = "meineCA.contoso.local\Meine Intermediate CA"
-$CommonName = $x.SubjectName.replace("CN=","")
+$CommonName = $Sourcefile.SubjectName.replace("CN=","")
 $shortname = $CommonName.Split(",")
 $shortname = $shortname[0]
 
