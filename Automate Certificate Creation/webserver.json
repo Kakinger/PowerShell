@@ -1,0 +1,10 @@
+[
+    {
+        "SubjectName":  "CN=server01.contoso.local",
+        "DnsNames":  [
+                         "server01.contoso.local",
+                         "server01",
+                         "10.10.10.2"
+                     ]
+    }
+]
