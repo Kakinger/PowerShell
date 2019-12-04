@@ -1,3 +1,25 @@
+<#    
+    .SYNOPSIS
+    Erstellung von einem Benutzer-Zertifikat mit einer Windows CA
+    .DESCRIPTION
+    PowerShell Skript zur automatischen Erstellung von einem 
+        Benutzer-Zertifikat als .pfx inkl. Kennwort
+    .EXAMPLE
+    C:\tools\CreateUserCertificate.ps1
+    .NOTES
+    Date:    04.12.2019
+    Author:  Jan Kappen
+    Website: https://www.zueschen.eu
+    Twitter: @JanKappen
+
+    Wichtig: Die folgenden Dateien werden benötigt:
+        - user.json => Diese Datei enthält den AD-Benutzer
+        - Request-Certificate.ps1 => Dieses Skript sorgt für die Erstellung der Zertifikate
+          Das Skript ist verfügbar über:
+          https://gallery.technet.microsoft.com/scriptcenter/Request-certificates-from-b6a07151 oder
+          https://github.com/J0F3/PowerShell
+#>
+
 # Funktion zur Generierung von einem zufälligen Kennwort
 Function Get-RandomPassword ([Int32]$Length)
 {
